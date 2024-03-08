@@ -10,7 +10,7 @@ controllerManager:
       allowPrivilegeEscalation: false
       capabilities:
         drop:
-        - ALL
+          - ALL
     image:
       repository: inseefrlab/s3-operator
       tag: latest
@@ -23,8 +23,11 @@ controllerManager:
       requests:
         cpu: 50m
         memory: 64Mi
+    extraArgs: []
+    extraEnv: {}
   replicas: 1
 kubernetesClusterDomain: cluster.local
+
 s3:
   endpointUrl: "localhost:9000"
   disableTls: false
@@ -50,3 +53,9 @@ s3:
   # caCertificateBundlePath: /path/to/ca-bundle.crt
   # caCertificatesBase64:
   # - base64encodedPEMFormatCACertificate
+
+  # Should the operator try to delete the resource from the S3 backend upon CR deletion ?
+  deletion:
+    bucket: false
+    path: false
+    policy: false
